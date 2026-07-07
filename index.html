@@ -16,8 +16,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <style>
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:#f2f2f5;color:#1d1d22;}
-  body{-webkit-font-smoothing:antialiased;font-family:'Hanken Grotesk',sans-serif;overflow-x:hidden;}
+  html,body{margin:0;padding:0;background:#f2f2f5;color:#1d1d22;height:100%;}
+  body{-webkit-font-smoothing:antialiased;font-family:'Hanken Grotesk',sans-serif;overflow:hidden;}
   ::selection{background:#0d52b5;color:#f2f2f5;}
   ::-webkit-scrollbar{width:0;height:0;}
   [data-grain]{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
@@ -40,11 +40,9 @@
 </style>
 
 
-<section data-screen-label="SEDOVI — Studio v3" style="position:relative;background:#f2f2f5;color:#1d1d22;font-family:'Hanken Grotesk',sans-serif;min-height:100vh;overflow:hidden;">
+<section data-screen-label="SEDOVI — Studio v3" style="position:relative;background:#f2f2f5;color:#1d1d22;font-family:'Hanken Grotesk',sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden;">
 
   <div data-grain></div>
-
-  <div data-progress style="position:fixed;top:0;left:0;height:2px;width:100%;background:#0d52b5;z-index:96;transform:scaleX(0);transform-origin:left;"></div>
 
   <!-- PRELOADER -->
   <div data-preloader style="position:fixed;inset:0;z-index:9999;background:#f2f2f5;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,5vw,64px);">
@@ -58,19 +56,8 @@
     <div style="height:1px;background:#e2e2e8;margin-top:22px;overflow:hidden;"><div data-pl-bar style="height:100%;background:#0d52b5;transform:scaleX(0);transform-origin:left;"></div></div>
   </div>
 
-  <!-- NAV -->
-  <div data-nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,56px);">
-    <a href="#top" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.01em;text-decoration:none;color:#1d1d22;">SEDOVI<span style="color:#0d52b5;">.</span></a>
-    <div data-r="navlinks" style="display:flex;gap:30px;font-family:'Space Mono',monospace;font-size:13px;">
-      <a href="#services" data-cursor style="text-decoration:none;color:#74767c;">[ services ]</a>
-      <a href="#work" data-cursor style="text-decoration:none;color:#74767c;">[ work ]</a>
-      <a href="#about" data-cursor style="text-decoration:none;color:#74767c;">[ about ]</a>
-    </div>
-    <a href="#contact" data-magnetic="0.4" data-cursor style="background:#0d52b5;color:#f2f2f5;padding:11px 20px;border-radius:100px;font-weight:700;text-decoration:none;font-size:14px;white-space:nowrap;">Book a call</a>
-  </div>
-
   <!-- HERO -->
-  <div data-hero id="top" style="position:relative;height:100vh;min-height:660px;display:flex;align-items:center;overflow:hidden;">
+  <div data-hero id="top" style="position:relative;flex:1 1 auto;min-height:0;display:flex;align-items:center;overflow:hidden;">
     <canvas data-webgl style="position:absolute;inset:0;width:100%;height:100%;z-index:0;"></canvas>
     <div data-hero-content style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:0 clamp(20px,4vw,56px);">
       <div data-hero-eyebrow style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.06em;color:#0d52b5;margin-bottom:28px;">// software studio — index 2026</div>
@@ -81,121 +68,9 @@
       <div data-r="herobtns" style="display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between;margin-top:42px;">
         <p data-hero-sub style="max-width:44ch;font-size:clamp(16px,1.5vw,19px);line-height:1.55;color:#5b5d63;margin:0;">A small, senior studio. Quick turnarounds and code that holds up — no layers between you and the work.</p>
         <div style="display:flex;gap:12px;flex-shrink:0;">
-          <a href="#contact" data-magnetic="0.4" data-cursor style="display:inline-flex;align-items:center;gap:10px;background:#0d52b5;color:#f2f2f5;padding:15px 26px;border-radius:100px;text-decoration:none;font-weight:700;font-size:15px;">Book a call <span style="font-size:17px;">↘</span></a>
-          <a href="#work" data-magnetic="0.3" data-cursor style="display:inline-flex;align-items:center;background:transparent;color:#1d1d22;padding:15px 24px;border-radius:100px;text-decoration:none;font-weight:600;font-size:15px;border:1px solid #d6d6de;" style-hover="border-color:#0d52b5;">View work</a>
+          <a href="mailto:developer@sedovi.nl" data-magnetic="0.4" data-cursor style="display:inline-flex;align-items:center;gap:10px;background:#0d52b5;color:#f2f2f5;padding:15px 26px;border-radius:100px;text-decoration:none;font-weight:700;font-size:15px;">developer@sedovi.nl <span style="font-size:17px;">↗</span></a>
         </div>
       </div>
-    </div>
-    <div data-hero-cue style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:12px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#74767c;">
-      Scroll
-      <span style="width:1px;height:44px;background:#74767c;animation:cueLine 2.2s ease-in-out infinite;"></span>
-    </div>
-  </div>
-
-  <!-- MARQUEE -->
-  <div style="overflow:hidden;border-top:1px solid #e2e2e8;border-bottom:1px solid #e2e2e8;padding:26px 0;background:#f2f2f5;position:relative;z-index:3;">
-    <div style="display:flex;width:max-content;white-space:nowrap;animation:marq 30s linear infinite;font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,4vw,54px);letter-spacing:-0.02em;">
-      <span style="display:flex;align-items:center;">Web apps <span style="color:#0d52b5;margin:0 24px;">✦</span> SaaS products <span style="color:#0d52b5;margin:0 24px;">✦</span> iOS / Android <span style="color:#0d52b5;margin:0 24px;">✦</span> Internal tools <span style="color:#0d52b5;margin:0 24px;">✦</span></span>
-      <span style="display:flex;align-items:center;">Web apps <span style="color:#0d52b5;margin:0 24px;">✦</span> SaaS products <span style="color:#0d52b5;margin:0 24px;">✦</span> iOS / Android <span style="color:#0d52b5;margin:0 24px;">✦</span> Internal tools <span style="color:#0d52b5;margin:0 24px;">✦</span></span>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <div id="services" style="max-width:1400px;margin:0 auto;padding:clamp(90px,14vh,170px) clamp(20px,4vw,56px) clamp(40px,6vh,70px);position:relative;z-index:3;">
-    <div data-reveal style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:30px;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#74767c;">
-      <span><span style="color:#0d52b5;">(01)</span> Services</span>
-      <span style="color:#0d52b5;">[ 01 — 03 ]</span>
-    </div>
-    <div data-caps style="border-top:1px solid #e2e2e8;">
-      <a href="#contact" data-cap data-label="Custom apps" data-r="srow" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:64px 1.1fr 1.6fr auto;gap:28px;align-items:center;padding:clamp(22px,3vw,38px) 0;border-bottom:1px solid #e2e2e8;cursor:pointer;transition:padding-left .4s ease;">
-        <span style="font-family:'Space Mono',monospace;font-size:14px;color:#0d52b5;">01</span>
-        <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,46px);letter-spacing:-0.02em;">Custom apps</span>
-        <span data-sdesc style="color:#5b5d63;font-size:16px;line-height:1.5;">Internal tools, dashboards, and web apps built around how your team actually works.</span>
-        <span data-arrow style="font-size:24px;color:#0d52b5;display:inline-block;">→</span>
-      </a>
-      <a href="#contact" data-cap data-label="SaaS products" data-r="srow" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:64px 1.1fr 1.6fr auto;gap:28px;align-items:center;padding:clamp(22px,3vw,38px) 0;border-bottom:1px solid #e2e2e8;cursor:pointer;transition:padding-left .4s ease;">
-        <span style="font-family:'Space Mono',monospace;font-size:14px;color:#0d52b5;">02</span>
-        <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,46px);letter-spacing:-0.02em;">SaaS products</span>
-        <span data-sdesc style="color:#5b5d63;font-size:16px;line-height:1.5;">From first prototype to a product people pay for — the whole build under one roof.</span>
-        <span data-arrow style="font-size:24px;color:#0d52b5;display:inline-block;">→</span>
-      </a>
-      <a href="#contact" data-cap data-label="Mobile apps" data-r="srow" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:64px 1.1fr 1.6fr auto;gap:28px;align-items:center;padding:clamp(22px,3vw,38px) 0;border-bottom:1px solid #e2e2e8;cursor:pointer;transition:padding-left .4s ease;">
-        <span style="font-family:'Space Mono',monospace;font-size:14px;color:#0d52b5;">03</span>
-        <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,46px);letter-spacing:-0.02em;">Mobile apps</span>
-        <span data-sdesc style="color:#5b5d63;font-size:16px;line-height:1.5;">iOS and Android apps that feel native and actually ship on time.</span>
-        <span data-arrow style="font-size:24px;color:#0d52b5;display:inline-block;">→</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- VALUE CARDS -->
-  <div style="max-width:1400px;margin:0 auto;padding:clamp(40px,6vh,70px) clamp(20px,4vw,56px) clamp(90px,12vh,150px);position:relative;z-index:3;">
-    <div data-r="cards3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-      <div data-reveal data-tilt style="background:#f9f9fc;border:1px solid #e2e2e8;border-radius:16px;padding:34px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#0d52b5;margin-bottom:16px;">[ speed ]</div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:22px;margin-bottom:10px;">Weeks, not quarters</div><p style="color:#5b5d63;font-size:15px;line-height:1.55;margin:0;">You see working software fast, then the iterating starts.</p></div>
-      <div data-reveal data-tilt data-delay="0.08" style="background:#f9f9fc;border:1px solid #e2e2e8;border-radius:16px;padding:34px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#0d52b5;margin-bottom:16px;">[ quality ]</div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:22px;margin-bottom:10px;">Built to last</div><p style="color:#5b5d63;font-size:15px;line-height:1.55;margin:0;">Clean code you won't have to rebuild next year.</p></div>
-      <div data-reveal data-tilt data-delay="0.16" style="background:#f9f9fc;border:1px solid #e2e2e8;border-radius:16px;padding:34px;"><div style="font-family:'Space Mono',monospace;font-size:12px;color:#0d52b5;margin-bottom:16px;">[ versatility ]</div><div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:22px;margin-bottom:10px;">Full stack, one studio</div><p style="color:#5b5d63;font-size:15px;line-height:1.55;margin:0;">Web, mobile, and SaaS without the hand-offs.</p></div>
-    </div>
-  </div>
-
-  <!-- WORK — pinned horizontal gallery -->
-  <div id="work" data-gallery style="position:relative;height:100vh;overflow:hidden;background:#f2f2f5;z-index:4;border-top:1px solid #e2e2e8;border-bottom:1px solid #e2e2e8;">
-    <div style="position:absolute;top:clamp(24px,5vh,52px);left:clamp(20px,4vw,56px);z-index:5;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#74767c;"><span style="color:#0d52b5;">(02)</span> Selected work</div>
-    <div data-track style="display:flex;align-items:center;gap:clamp(34px,5vw,76px);height:100%;width:max-content;padding:0 clamp(20px,8vw,140px);">
-
-      <div data-panel style="flex:0 0 auto;width:clamp(300px,46vw,600px);display:flex;flex-direction:column;gap:22px;">
-        <div data-cursor style="position:relative;height:54vh;border-radius:14px;overflow:hidden;border:1px solid #e2e2e8;background:repeating-linear-gradient(135deg,#e7e7ed,#e7e7ed 11px,#eeeef3 11px,#eeeef3 22px);display:flex;align-items:flex-end;padding:24px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9a9ca3;position:absolute;top:20px;left:22px;">coming to the app store</span>
-          <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:clamp(34px,4vw,64px);line-height:0.9;letter-spacing:-0.03em;">Tummy</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
-          <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:17px;">Tummy — FODMAP &amp; gut health tracking</div>
-          <div style="text-align:right;font-family:'Space Mono',monospace;font-size:12px;color:#74767c;"><div style="color:#0d52b5;">01 / 02</div><div>ios — in development</div></div>
-        </div>
-      </div>
-
-      <a href="#contact" data-panel data-cursor style="flex:0 0 auto;width:clamp(300px,46vw,600px);display:flex;flex-direction:column;gap:22px;text-decoration:none;color:inherit;">
-        <div style="position:relative;height:54vh;border-radius:14px;overflow:hidden;border:1px solid #d6d6de;background:#f9f9fc;display:flex;align-items:flex-end;padding:24px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#9a9ca3;position:absolute;top:20px;left:22px;">next up</span>
-          <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:clamp(34px,4vw,64px);line-height:0.9;letter-spacing:-0.03em;">Your project<span style="color:#0d52b5;">?</span></span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;">
-          <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:17px;">Start the conversation</div>
-          <div style="text-align:right;font-family:'Space Mono',monospace;font-size:12px;color:#74767c;"><div style="color:#0d52b5;">02 / 02</div><div>let's talk</div></div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <div id="about" style="max-width:1400px;margin:0 auto;padding:clamp(90px,14vh,170px) clamp(20px,4vw,56px);position:relative;z-index:3;">
-    <div data-reveal style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#74767c;margin-bottom:44px;"><span style="color:#0d52b5;">(03)</span> About</div>
-    <div data-r="aboutgrid" style="display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(40px,6vw,90px);align-items:start;">
-      <div>
-        <p data-split style="font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,48px);line-height:1.16;letter-spacing:-0.02em;margin:0;">SEDOVI is a small, senior software studio that likes building things that actually ship. Direct contact, no layers, no hand-offs — from first call to final release.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:46px;">
-          <a href="#contact" data-magnetic="0.35" data-cursor style="display:inline-flex;align-items:center;gap:10px;border:1px solid #d6d6de;color:#1d1d22;padding:14px 24px;border-radius:100px;text-decoration:none;font-size:14px;font-weight:600;" style-hover="border-color:#0d52b5;">Start a project</a>
-        </div>
-      </div>
-      <div data-reveal data-delay="0.1" style="font-family:'Space Mono',monospace;font-size:13px;border-top:1px solid #e2e2e8;">
-        <div style="display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid #e2e2e8;"><span style="color:#74767c;">founded</span><span>2026</span></div>
-        <div style="display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid #e2e2e8;"><span style="color:#74767c;">size</span><span>small &amp; senior</span></div>
-        <div style="display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid #e2e2e8;"><span style="color:#74767c;">focus</span><span>apps · saas · mobile</span></div>
-        <div style="display:flex;justify-content:space-between;padding:18px 0;"><span style="color:#74767c;">approach</span><span>fast &amp; hands-on</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTACT -->
-  <div id="contact" style="max-width:1400px;margin:0 auto;padding:clamp(60px,8vh,110px) clamp(20px,4vw,56px) clamp(60px,8vh,90px);position:relative;z-index:3;">
-    <div data-reveal style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#74767c;margin-bottom:26px;"><span style="color:#0d52b5;">(04)</span> Let's talk</div>
-    <h2 style="margin:0;font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:clamp(48px,12vw,180px);line-height:0.9;letter-spacing:-0.035em;">
-      <span data-split style="display:block;">Let's</span>
-      <span data-split style="display:block;color:#0d52b5;">build it.</span>
-    </h2>
-    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;margin-top:48px;">
-      <p style="max-width:42ch;font-size:18px;line-height:1.55;color:#5b5d63;margin:0;">Book a free 30-minute call. Bring what you want to build — leave with a clear plan to ship it.</p>
-      <a href="mailto:developer@sedovi.nl" data-magnetic="0.4" data-cursor style="display:inline-flex;align-items:center;gap:14px;background:#0d52b5;color:#f2f2f5;padding:20px 34px;border-radius:100px;text-decoration:none;font-weight:700;font-size:clamp(16px,1.6vw,20px);">developer@sedovi.nl <span style="font-size:20px;">↗</span></a>
     </div>
   </div>
 
@@ -204,11 +79,6 @@
     <div style="font-family:'Schibsted Grotesk',sans-serif;font-size:16px;font-weight:800;">SEDOVI<span style="color:#0d52b5;">.</span></div>
     <div style="font-family:'Space Mono',monospace;font-size:12px;color:#74767c;">SEDOVI Development B.V. · KvK 42084959 · Spijkenisse, NL · © 2026</div>
     <a href="#top" data-cursor style="text-decoration:none;font-family:'Space Mono',monospace;font-size:12px;color:#1d1d22;">back to top ↑</a>
-  </div>
-
-  <!-- SERVICE HOVER PREVIEW -->
-  <div data-cap-preview style="position:fixed;top:0;left:0;z-index:90;width:260px;height:190px;border-radius:12px;overflow:hidden;pointer-events:none;opacity:0;border:1px solid #d6d6de;background:repeating-linear-gradient(135deg,#e7e7ed,#e7e7ed 11px,#eeeef3 11px,#eeeef3 22px);display:flex;align-items:center;justify-content:center;">
-    <span data-cap-preview-label style="font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:22px;color:#0d52b5;text-align:center;padding:0 18px;letter-spacing:-0.01em;"></span>
   </div>
 
   <!-- CUSTOM CURSOR -->
