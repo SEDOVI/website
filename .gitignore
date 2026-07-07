@@ -1,0 +1,10 @@
+# Firebase
+firebase-debug.log*
+firestore-debug.log*
+database-debug.log*
+ui-debug.log*
+.firebase/
+.runtimeconfig.json
+
+# macOS
+.DS_Store
