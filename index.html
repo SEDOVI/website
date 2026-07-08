@@ -309,14 +309,15 @@ class Component extends DCLogic {
       const t = new THREE.Texture(c); t.needsUpdate = true; return t;
     };
     const texZero = glyph('0'), texOne = glyph('1');
+    const GLYPH_TINT = new THREE.Color('#a9bedd'); // light blue-gray — keep digits soft, never dark
     const sprites = [];
     for (let i = 0; i < 40; i++) {
       const isOne = Math.random() > 0.5;
-      const m = new THREE.SpriteMaterial({ map: isOne ? texOne : texZero, transparent: true, opacity: 0, depthWrite: false, blending: THREE.NormalBlending, color: ACCENT });
+      const m = new THREE.SpriteMaterial({ map: isOne ? texOne : texZero, transparent: true, opacity: 0, depthWrite: false, blending: THREE.NormalBlending, color: GLYPH_TINT });
       const s = new THREE.Sprite(m);
       const dir = new THREE.Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1).normalize();
-      const sc = 0.11 + Math.random() * 0.09; s.scale.set(sc, sc, sc);
-      s.userData = { dir, rad: R * (1.08 + Math.random() * 0.95), isOne, phase: Math.random() * 6.28, spd: 0.4 + Math.random() * 0.8, flip: 2 + Math.random() * 4, flipT: Math.random() * 4, baseOp: 0.3 + Math.random() * 0.45 };
+      const sc = 0.05 + Math.random() * 0.03; s.scale.set(sc, sc, sc); // caps rendered glyphs around ~26px max
+      s.userData = { dir, rad: R * (1.08 + Math.random() * 0.95), isOne, phase: Math.random() * 6.28, spd: 0.4 + Math.random() * 0.8, flip: 2 + Math.random() * 4, flipT: Math.random() * 4, baseOp: 0.15 + Math.random() * 0.2 };
       group.add(s); sprites.push(s);
     }
 
