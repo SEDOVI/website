@@ -30,6 +30,11 @@
     *{animation:none !important;}
   }
   @media (max-width:880px){
+    /* narrow screens: hero copy spans the full width, so extend the scrim under the text
+       while leaving the globe's right + upper limb clearly visible */
+    [data-hero-scrim]{background:
+      linear-gradient(to right,rgba(242,242,245,0.9) 0%,rgba(242,242,245,0.68) 48%,rgba(242,242,245,0.42) 74%,rgba(242,242,245,0.1) 100%),
+      linear-gradient(to top,rgba(242,242,245,0.86) 0%,rgba(242,242,245,0.34) 44%,rgba(242,242,245,0.04) 100%) !important;}
     [data-r~="navlinks"]{display:none !important;}
     [data-r~="aboutgrid"]{grid-template-columns:1fr !important;gap:40px !important;}
     [data-r~="cards3"]{grid-template-columns:1fr !important;}
