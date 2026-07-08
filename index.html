@@ -17,7 +17,7 @@
 <style>
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#f2f2f5;color:#1d1d22;height:100%;}
-  body{-webkit-font-smoothing:antialiased;font-family:'Hanken Grotesk',sans-serif;overflow:hidden;}
+  body{-webkit-font-smoothing:antialiased;font-family:'Hanken Grotesk',sans-serif;overflow-x:hidden;}
   ::selection{background:#0d52b5;color:#f2f2f5;}
   ::-webkit-scrollbar{width:0;height:0;}
   [data-grain]{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
@@ -37,10 +37,16 @@
     [data-r~="srow"] [data-sdesc]{grid-column:1 / -1 !important;text-align:left !important;margin-top:4px !important;}
     [data-r~="srow"] [data-arrow]{display:none !important;}
   }
+  @media (max-height:540px){
+    [data-hero-content]{padding-top:88px !important;padding-bottom:28px !important;}
+    [data-hero-content] h1{font-size:clamp(26px,7vh,44px) !important;}
+    [data-hero-eyebrow]{margin-bottom:12px !important;}
+    [data-r~="herobtns"]{margin-top:20px !important;gap:16px !important;}
+  }
 </style>
 
 
-<section data-screen-label="SEDOVI — Studio v3" style="position:relative;background:#f2f2f5;color:#1d1d22;font-family:'Hanken Grotesk',sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden;">
+<section data-screen-label="SEDOVI — Studio v3" style="position:relative;background:#f2f2f5;color:#1d1d22;font-family:'Hanken Grotesk',sans-serif;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;">
 
   <div data-grain></div>
 
