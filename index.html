@@ -24,7 +24,6 @@
   [data-grain]{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
   [data-hero-scrim]{display:block;}
   @keyframes marq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  @keyframes cueLine{0%{transform:scaleY(0);transform-origin:top;}45%{transform:scaleY(1);transform-origin:top;}55%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
   @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.25;}}
   @media (prefers-reduced-motion: reduce){
     [data-preloader]{display:none !important;}
@@ -148,7 +147,6 @@ class Component extends DCLogic {
       try { this.initGallery(); } catch (e) {}
       try { this.initCaps(); } catch (e) {}
       try { this.initMagnetic(); } catch (e) {}
-      try { this.initProgress(); } catch (e) {}
       try { this.initHeroParallax(); } catch (e) {}
       try { ScrollTrigger.refresh(); } catch (e) {}
     };
@@ -168,23 +166,21 @@ class Component extends DCLogic {
   prepareHero() {
     this.$all('[data-hero] [data-hero-split]').forEach(el => this.splitWords(el));
     gsap.set('[data-hero] [data-word]', { yPercent: 120, opacity: 0 });
-    gsap.set(['[data-hero-eyebrow]', '[data-hero-sub]', '[data-hero-cue]', '[data-nav]'], { opacity: 0 });
+    gsap.set(['[data-hero-eyebrow]', '[data-hero-sub]'], { opacity: 0 });
   }
 
   revealHero() {
     const t = gsap.timeline();
-    t.to('[data-nav]', { opacity: 1, duration: 1, ease: 'power2.out' }, 0)
-      .fromTo('[data-hero-eyebrow]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.05)
+    t.fromTo('[data-hero-eyebrow]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.05)
       .to('[data-hero] [data-word]', { yPercent: 0, opacity: 1, duration: 1.15, ease: 'expo.out', stagger: 0.05 }, 0.15)
-      .fromTo('[data-hero-sub]', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.55)
-      .to('[data-hero-cue]', { opacity: 1, duration: 0.8 }, 0.8);
+      .fromTo('[data-hero-sub]', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.55);
     if (this._heroAnim) gsap.to(this._heroAnim, { amp: 0.34, duration: 2.6, ease: 'power2.out' });
   }
 
   revealHeroInstant() {
     if (!window.gsap) return;
     gsap.set('[data-hero] [data-word]', { yPercent: 0, opacity: 1 });
-    gsap.set(['[data-hero-eyebrow]', '[data-hero-sub]', '[data-hero-cue]', '[data-nav]'], { opacity: 1 });
+    gsap.set(['[data-hero-eyebrow]', '[data-hero-sub]'], { opacity: 1 });
     if (this._heroAnim) this._heroAnim.amp = 0.34;
   }
 
@@ -456,10 +452,6 @@ class Component extends DCLogic {
       });
       el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1,0.4)' }));
     });
-  }
-
-  initProgress() {
-    this.trackTrigger(gsap.to('[data-progress]', { scaleX: 1, ease: 'none', scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 } }));
   }
 
   initHeroParallax() {
