@@ -5,468 +5,257 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SEDOVI — Software studio · apps, SaaS &amp; mobile</title>
 <meta name="description" content="SEDOVI Development B.V. is an independent Dutch software studio building custom apps, SaaS products and mobile applications.">
+<meta name="theme-color" content="#0d52b5">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SEDOVI">
+<meta property="og:title" content="SEDOVI — Software studio">
+<meta property="og:description" content="Custom apps, SaaS and mobile. A small, senior Dutch studio. Quick turnarounds and code that holds up.">
+<meta property="og:url" content="https://sedovi.nl/">
+<meta property="og:image" content="https://sedovi.nl/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sedovi.nl/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d52b5'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-size='40' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
-</head>
-<body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;700&family=Schibsted+Grotesk:wght@800&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
+  :root{
+    --bg:#f2f2f5; --ink:#1d1d22; --muted:#5b5d63; --line:#e2e2e8; --blue:#0d52b5;
+    --sans:'Hanken Grotesk',system-ui,sans-serif; --display:'Schibsted Grotesk',var(--sans); --mono:'Space Mono',ui-monospace,monospace;
+    --gutter:clamp(20px,4vw,56px);
+  }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:#f2f2f5;color:#1d1d22;height:100%;}
-  body{-webkit-font-smoothing:antialiased;font-family:'Hanken Grotesk',sans-serif;overflow-x:hidden;}
-  ::selection{background:#0d52b5;color:#f2f2f5;}
-  ::-webkit-scrollbar{width:0;height:0;}
-  [data-grain]{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:0.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-  [data-hero-scrim]{display:block;}
-  @keyframes marq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  @keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.25;}}
-  @media (prefers-reduced-motion: reduce){
-    [data-preloader]{display:none !important;}
-    *{animation:none !important;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;overflow-x:hidden;}
+  ::selection{background:var(--blue);color:var(--bg);}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+
+  .grain{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .logo{position:absolute;top:18px;left:var(--gutter);z-index:4;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;}
+  .dot{color:var(--blue);}
+
+  .hero{position:relative;flex:1 0 auto;display:flex;align-items:center;overflow:hidden;}
+  .globe{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+  .scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+    linear-gradient(to right,rgba(242,242,245,.88) 0%,rgba(242,242,245,.62) 36%,rgba(242,242,245,.2) 58%,rgba(242,242,245,0) 76%),
+    linear-gradient(to top,rgba(242,242,245,.82) 0%,rgba(242,242,245,.32) 42%,rgba(242,242,245,0) 100%);}
+  .hero-content{position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:88px var(--gutter) 40px;}
+  .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--blue);margin:0 0 28px;}
+  h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(40px,7.2vw,118px);line-height:.92;letter-spacing:-.035em;max-width:16ch;}
+  h1 span{display:block;}
+  h1 .accent{color:var(--blue);}
+  .word-wrap{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.16em;margin-bottom:-.16em;}
+  .word{display:inline-block;}
+  .sub{max-width:44ch;font-size:clamp(16px,1.5vw,19px);line-height:1.55;color:var(--muted);margin:42px 0 0;}
+
+  .contact{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px;}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:var(--bg);padding:15px 26px;border-radius:100px;text-decoration:none;font-weight:700;font-size:15px;transition:transform .2s ease,box-shadow .2s ease;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px -12px rgba(13,82,181,.55);}
+  .btn .arrow{font-size:17px;}
+  .email{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;color:var(--muted);}
+  .email a{text-decoration:none;border-bottom:1px solid var(--line);}
+  .email a:hover{color:var(--ink);border-color:var(--ink);}
+  .copy{font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--line);border-radius:100px;background:transparent;color:var(--muted);cursor:pointer;}
+  .copy:hover{border-color:var(--ink);color:var(--ink);}
+
+  footer{border-top:1px solid var(--line);padding:30px var(--gutter);position:relative;z-index:3;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;}
+  footer .logo-sm{font-family:var(--display);font-size:16px;font-weight:800;}
+  footer small{font-family:var(--mono);font-size:12px;color:var(--muted);}
+
+  /* reveal */
+  .eyebrow,.sub,.contact{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+  .word{transform:translateY(120%);opacity:0;transition:transform 1.1s cubic-bezier(.16,1,.3,1),opacity .6s ease;transition-delay:calc(.1s + var(--i)*.05s);}
+  .ready .eyebrow{opacity:1;transform:none;}
+  .ready .word{transform:none;opacity:1;}
+  .ready .sub{opacity:1;transform:none;transition-delay:.5s;}
+  .ready .contact{opacity:1;transform:none;transition-delay:.65s;}
+
+  @media (prefers-reduced-motion:reduce){
+    .eyebrow,.sub,.contact,.word{transition:none;}
   }
   @media (max-width:880px){
-    /* narrow screens: hero copy spans the full width, so extend the scrim under the text
-       while leaving the globe's right + upper limb clearly visible */
-    [data-hero-scrim]{background:
-      linear-gradient(to right,rgba(242,242,245,0.9) 0%,rgba(242,242,245,0.68) 48%,rgba(242,242,245,0.42) 74%,rgba(242,242,245,0.1) 100%),
-      linear-gradient(to top,rgba(242,242,245,0.86) 0%,rgba(242,242,245,0.34) 44%,rgba(242,242,245,0.04) 100%) !important;}
-    [data-r~="navlinks"]{display:none !important;}
-    [data-r~="aboutgrid"]{grid-template-columns:1fr !important;gap:40px !important;}
-    [data-r~="cards3"]{grid-template-columns:1fr !important;}
-    [data-r~="srow"]{grid-template-columns:42px 1fr !important;gap:6px 16px !important;}
-    [data-r~="srow"] [data-sdesc]{grid-column:1 / -1 !important;text-align:left !important;margin-top:4px !important;}
-    [data-r~="srow"] [data-arrow]{display:none !important;}
+    .scrim{background:
+      linear-gradient(to right,rgba(242,242,245,.9) 0%,rgba(242,242,245,.68) 48%,rgba(242,242,245,.42) 74%,rgba(242,242,245,.1) 100%),
+      linear-gradient(to top,rgba(242,242,245,.86) 0%,rgba(242,242,245,.34) 44%,rgba(242,242,245,.04) 100%);}
   }
-  @media (max-height:540px){
-    [data-hero-content]{padding-top:88px !important;padding-bottom:28px !important;}
-    [data-hero-content] h1{font-size:clamp(26px,7vh,44px) !important;}
-    [data-hero-eyebrow]{margin-bottom:12px !important;}
-    [data-r~="herobtns"]{margin-top:20px !important;gap:16px !important;}
+  @media (max-height:700px){
+    h1{font-size:clamp(26px,7.5vh,64px);}
+    .eyebrow{margin-bottom:12px;}
+    .sub{margin-top:18px;}
+    .contact{margin-top:18px;}
+    .hero-content{padding:72px var(--gutter) 24px;}
   }
 </style>
+</head>
+<body>
 
+<div class="grain" aria-hidden="true"></div>
+<a href="#top" class="logo">SEDOVI<span class="dot">.</span></a>
 
-<section data-screen-label="SEDOVI — Studio v3" style="position:relative;background:#f2f2f5;color:#1d1d22;font-family:'Hanken Grotesk',sans-serif;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;overflow:hidden;">
-
-  <div data-grain></div>
-
-  <!-- PRELOADER -->
-  <div data-preloader style="position:fixed;inset:0;z-index:9999;background:#f2f2f5;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,5vw,64px);">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;">
-      <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:clamp(15vw,18vw,260px);line-height:0.8;letter-spacing:-0.03em;"><span data-count>000</span></div>
-      <div style="text-align:right;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#74767c;padding-bottom:1.4vw;">
-        <div style="color:#1d1d22;font-weight:700;font-family:'Schibsted Grotesk',sans-serif;">SEDOVI<span style="color:#0d52b5;">.</span></div>
-        <div>software studio — loading</div>
-      </div>
-    </div>
-    <div style="height:1px;background:#e2e2e8;margin-top:22px;overflow:hidden;"><div data-pl-bar style="height:100%;background:#0d52b5;transform:scaleX(0);transform-origin:left;"></div></div>
-  </div>
-
-  <!-- LOGO -->
-  <a href="#top" data-cursor style="position:absolute;top:18px;left:clamp(20px,4vw,56px);z-index:60;font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.01em;text-decoration:none;color:#1d1d22;">SEDOVI<span style="color:#0d52b5;">.</span></a>
-
-  <!-- HERO -->
-  <div data-hero id="top" style="position:relative;flex:1 0 auto;display:flex;align-items:center;overflow:hidden;">
-    <canvas data-webgl style="position:absolute;inset:0;width:100%;height:100%;z-index:0;"></canvas>
-    <div data-hero-scrim style="position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to right,rgba(242,242,245,0.88) 0%,rgba(242,242,245,0.62) 36%,rgba(242,242,245,0.2) 58%,rgba(242,242,245,0) 76%),linear-gradient(to top,rgba(242,242,245,0.82) 0%,rgba(242,242,245,0.32) 42%,rgba(242,242,245,0) 100%);"></div>
-    <div data-hero-content style="position:relative;z-index:2;width:100%;max-width:1400px;margin:0 auto;padding:0 clamp(20px,4vw,56px);">
-      <div data-hero-eyebrow style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.06em;color:#0d52b5;margin-bottom:28px;">// software studio — index 2026</div>
-      <h1 style="margin:0;font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:clamp(40px,7.2vw,118px);line-height:0.92;letter-spacing:-0.035em;max-width:16ch;">
-        <span data-hero-split style="display:block;">Custom apps, SaaS &amp; mobile —</span>
-        <span data-hero-split style="display:block;color:#0d52b5;">built fast, built right.</span>
-      </h1>
-      <div data-r="herobtns" style="display:flex;flex-direction:column;align-items:flex-start;gap:26px;margin-top:42px;">
-        <p data-hero-sub style="max-width:44ch;font-size:clamp(16px,1.5vw,19px);line-height:1.55;color:#5b5d63;margin:0;">A small, senior studio. Quick turnarounds and code that holds up — no layers between you and the work.</p>
-        <div style="display:flex;gap:12px;flex-shrink:0;">
-          <a href="mailto:developer@sedovi.nl" data-magnetic="0.4" data-cursor style="display:inline-flex;align-items:center;gap:10px;background:#0d52b5;color:#f2f2f5;padding:15px 26px;border-radius:100px;text-decoration:none;font-weight:700;font-size:15px;">Contact studio <span style="font-size:17px;">↗</span></a>
-        </div>
-      </div>
+<main class="hero" id="top">
+  <canvas class="globe" aria-hidden="true"></canvas>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="eyebrow">// software studio — index 2026</p>
+    <h1>
+      <span data-split>Custom apps, SaaS &amp; mobile —</span>
+      <span data-split class="accent">built fast, built right.</span>
+    </h1>
+    <p class="sub">A small, senior studio. Quick turnarounds and code that holds up — no layers between you and the work.</p>
+    <div class="contact">
+      <a href="mailto:developer@sedovi.nl" class="btn">Contact studio <span class="arrow" aria-hidden="true">↗</span></a>
+      <span class="email"><a href="mailto:developer@sedovi.nl">developer@sedovi.nl</a><button type="button" class="copy" data-copy="developer@sedovi.nl">copy</button></span>
     </div>
   </div>
+</main>
 
-  <!-- FOOTER -->
-  <div style="border-top:1px solid #e2e2e8;padding:30px clamp(20px,4vw,56px);position:relative;z-index:3;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;">
-    <div style="font-family:'Schibsted Grotesk',sans-serif;font-size:16px;font-weight:800;">SEDOVI<span style="color:#0d52b5;">.</span></div>
-    <div style="font-family:'Space Mono',monospace;font-size:12px;color:#74767c;">SEDOVI Development B.V. · KvK 42084959 · Spijkenisse, NL · © 2026</div>
-  </div>
+<footer>
+  <div class="logo-sm">SEDOVI<span class="dot">.</span></div>
+  <small>SEDOVI Development B.V. · KvK 42084959 · Spijkenisse, NL · © 2026</small>
+</footer>
 
-  <!-- CUSTOM CURSOR -->
-  <div data-cursor-ring style="position:fixed;top:0;left:0;z-index:10000;width:38px;height:38px;border:1px solid #1d1d22;border-radius:50%;pointer-events:none;opacity:0;"></div>
-  <div data-cursor-dot style="position:fixed;top:0;left:0;z-index:10000;width:6px;height:6px;background:#0d52b5;border-radius:50%;pointer-events:none;opacity:0;"></div>
-
-</section>
 <script>
-/* standalone boot — dc-runtime verwijderd */
-class DCLogic {}
-class Component extends DCLogic {
-  componentDidMount() {
-    this._sts = [];
-    this._winListeners = [];
-    this._raf = null;
-    this.boot();
-  }
-
-  componentWillUnmount() {
-    if (this._tickerFn && window.gsap) { try { gsap.ticker.remove(this._tickerFn); } catch (e) {} }
-    (this._winListeners || []).forEach(rm => { try { rm(); } catch (e) {} });
-    // intentionally NOT killing ScrollTriggers or the WebGL loop here —
-    // the runtime mounts/unmounts during init and that was wiping the live triggers.
-  }
-
-  q(s) { return document.querySelector(s); }
-  $all(s) { return Array.prototype.slice.call(document.querySelectorAll(s)); }
-  onWin(ev, fn, opts) { window.addEventListener(ev, fn, opts); this._winListeners.push(() => window.removeEventListener(ev, fn, opts)); }
-  trackTrigger(x) { if (x && x.scrollTrigger) this._sts.push(x.scrollTrigger); else if (x) this._sts.push(x); return x; }
-
-  waitFor(cond, timeout) {
-    return new Promise(res => {
-      const t0 = Date.now();
-      const chk = () => { if (cond()) res(true); else if (Date.now() - t0 > timeout) res(false); else requestAnimationFrame(chk); };
-      chk();
-    });
-  }
-
-  async boot() {
-    if (this._booted) return; this._booted = true;
-    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { this.hidePreloader(true); return; }
-    const ok = await this.waitFor(() => window.gsap && window.ScrollTrigger, 8000);
-    if (!ok) { this.hidePreloader(true); return; }
-    gsap.registerPlugin(ScrollTrigger);
-
-    try { this.initLenis(); } catch (e) {}
-    try { this.initCursor(); } catch (e) {}
-    try { if (window.THREE) this.initThree(); } catch (e) {}
-    try { this.prepareHero(); } catch (e) {}
-    try { this.runPreloader(); } catch (e) { this.hidePreloader(true); this.revealHeroInstant(); }
-
-    const setup = () => {
-      try { ScrollTrigger.getAll().forEach(st => st.kill(false)); } catch (e) {}
-      this._sts = [];
-      try { this.initReveals(); } catch (e) {}
-      try { this.initTilt(); } catch (e) {}
-      try { this.initGallery(); } catch (e) {}
-      try { this.initCaps(); } catch (e) {}
-      try { this.initMagnetic(); } catch (e) {}
-      try { this.initHeroParallax(); } catch (e) {}
-      try { ScrollTrigger.refresh(); } catch (e) {}
-    };
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => requestAnimationFrame(setup));
-    else requestAnimationFrame(setup);
-    this.onWin('load', () => { try { ScrollTrigger.refresh(); } catch (e) {} });
-  }
-
-  splitWords(el) {
-    const text = el.textContent;
-    el.innerHTML = text.split(/(\s+)/).map(tok => {
-      if (tok === '' || /^\s+$/.test(tok)) return tok;
-      return '<span style="display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.16em;margin-bottom:-0.16em;"><span data-word style="display:inline-block;will-change:transform;">' + tok + '</span></span>';
+(() => {
+  // headline word reveal
+  let i = 0;
+  document.querySelectorAll('[data-split]').forEach(el => {
+    el.innerHTML = el.textContent.split(/(\s+)/).map(tok => {
+      if (!tok || /^\s+$/.test(tok)) return tok;
+      return '<span class="word-wrap"><span class="word" style="--i:' + (i++) + '">' + tok + '</span></span>';
     }).join('');
-  }
+  });
+  const ready = () => requestAnimationFrame(() => document.body.classList.add('ready'));
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(ready);
+  setTimeout(ready, 1500); // font fallback
 
-  prepareHero() {
-    this.$all('[data-hero] [data-hero-split]').forEach(el => this.splitWords(el));
-    gsap.set('[data-hero] [data-word]', { yPercent: 120, opacity: 0 });
-    gsap.set(['[data-hero-eyebrow]', '[data-hero-sub]'], { opacity: 0 });
-  }
-
-  revealHero() {
-    const t = gsap.timeline();
-    t.fromTo('[data-hero-eyebrow]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.05)
-      .to('[data-hero] [data-word]', { yPercent: 0, opacity: 1, duration: 1.15, ease: 'expo.out', stagger: 0.05 }, 0.15)
-      .fromTo('[data-hero-sub]', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, 0.55);
-    if (this._heroAnim) gsap.to(this._heroAnim, { amp: 0.34, duration: 2.6, ease: 'power2.out' });
-  }
-
-  revealHeroInstant() {
-    if (!window.gsap) return;
-    gsap.set('[data-hero] [data-word]', { yPercent: 0, opacity: 1 });
-    gsap.set(['[data-hero-eyebrow]', '[data-hero-sub]'], { opacity: 1 });
-    if (this._heroAnim) this._heroAnim.amp = 0.34;
-  }
-
-  runPreloader() {
-    const pl = this.q('[data-preloader]');
-    const num = this.q('[data-count]');
-    const c = { v: 0 };
-    const tl = gsap.timeline();
-    tl.to(c, { v: 100, duration: 2.1, ease: 'power2.inOut', onUpdate: () => { if (num) num.textContent = String(Math.round(c.v)).padStart(3, '0'); } }, 0)
-      .to('[data-pl-bar]', { scaleX: 1, duration: 2.1, ease: 'power2.inOut' }, 0)
-      .to(pl, { yPercent: -100, duration: 1.1, ease: 'expo.inOut' }, '+=0.12')
-      .set(pl, { display: 'none' })
-      .add(() => this.revealHero(), '-=0.55');
-  }
-
-  hidePreloader(instant) {
-    const pl = this.q('[data-preloader]');
-    if (pl) { if (instant) { pl.style.transition = 'opacity .6s ease'; pl.style.opacity = '0'; setTimeout(() => { pl.style.display = 'none'; }, 620); } else pl.style.display = 'none'; }
-    this.revealHeroInstant();
-  }
-
-  initLenis() {
-    if (!window.Lenis) return;
-    if (window.__sedoviLenis) { try { window.__sedoviLenis.destroy(); } catch (e) {} }
-    const lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 1.0, smoothWheel: true });
-    window.__sedoviLenis = lenis; this._lenis = lenis;
-    this._tickerFn = (t) => lenis.raf(t * 1000);
-    gsap.ticker.add(this._tickerFn);
-    gsap.ticker.lagSmoothing(0);
-    lenis.on('scroll', () => { try { ScrollTrigger.update(); } catch (e) {} });
-    this.$all('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href');
-        if (id && id.length > 1) { const target = document.querySelector(id); if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: 0, duration: 1.4 }); } }
-      });
+  // copy email
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(btn.dataset.copy); btn.textContent = 'copied'; }
+      catch (e) { btn.textContent = 'select it'; }
+      setTimeout(() => { btn.textContent = 'copy'; }, 1600);
     });
+  });
+
+  // wireframe globe on a 2D canvas
+  const canvas = document.querySelector('.globe');
+  const hero = canvas.parentElement;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ctx = canvas.getContext('2d');
+  const N = 200, R = 0.88, K = 3, CAM = 4.0, FOV = 45;
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  const dirs = [];
+  for (let i = 0; i < N; i++) {
+    const y = 1 - (i / (N - 1)) * 2, rr = Math.sqrt(Math.max(0, 1 - y * y)), th = golden * i;
+    dirs.push([Math.cos(th) * rr, y, Math.sin(th) * rr]);
   }
-
-  initCursor() {
-    if (!window.matchMedia || !matchMedia('(pointer:fine)').matches) return;
-    document.body.style.cursor = 'none';
-    const dot = this.q('[data-cursor-dot]'), ring = this.q('[data-cursor-ring]');
-    if (!dot || !ring) return;
-    gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
-    const xr = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
-    const yr = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
-    const xd = gsap.quickTo(dot, 'x', { duration: 0.12, ease: 'power3' });
-    const yd = gsap.quickTo(dot, 'y', { duration: 0.12, ease: 'power3' });
-    let shown = false;
-    this.onWin('mousemove', e => {
-      if (!shown) { gsap.to([dot, ring], { opacity: 1, duration: 0.3 }); shown = true; }
-      xr(e.clientX); yr(e.clientY); xd(e.clientX); yd(e.clientY);
-    });
-    this.$all('a, button, [data-cursor]').forEach(el => {
-      el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 2.3, borderColor: '#0d52b5', backgroundColor: 'rgba(13,82,181,0.12)', duration: 0.3 }));
-      el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1, borderColor: '#1d1d22', backgroundColor: 'rgba(13,82,181,0)', duration: 0.3 }));
-    });
-  }
-
-  initThree() {
-    const canvas = this.q('[data-webgl]');
-    const hero = this.q('[data-hero]');
-    if (!canvas || !hero || canvas.__inited) return;
-    canvas.__inited = true;
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    this._renderer = renderer;
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-    camera.position.z = 4.0;
-    const group = new THREE.Group();
-    scene.add(group);
-    this._heroAnim = { amp: 0 };
-
-    const ACCENT = new THREE.Color('#0d52b5');
-    const N = 200, R = 0.88, K = 3;
-
-    // node base directions — fibonacci sphere
-    const dirs = [];
-    const golden = Math.PI * (3 - Math.sqrt(5));
-    for (let i = 0; i < N; i++) {
-      const y = 1 - (i / (N - 1)) * 2;
-      const rr = Math.sqrt(Math.max(0, 1 - y * y));
-      const th = golden * i;
-      dirs.push(new THREE.Vector3(Math.cos(th) * rr, y, Math.sin(th) * rr));
+  const edges = [], seen = new Set();
+  const d2 = (a, b) => (a[0]-b[0])**2 + (a[1]-b[1])**2 + (a[2]-b[2])**2;
+  for (let i = 0; i < N; i++) {
+    const ds = [];
+    for (let j = 0; j < N; j++) if (j !== i) ds.push([d2(dirs[i], dirs[j]), j]);
+    ds.sort((a, b) => a[0] - b[0]);
+    for (let n = 0; n < K; n++) {
+      const j = ds[n][1], key = i < j ? i + '_' + j : j + '_' + i;
+      if (!seen.has(key)) { seen.add(key); edges.push([i, j]); }
     }
-    // edges — each node to K nearest neighbours, deduped
-    const edges = [], seen = new Set();
-    for (let i = 0; i < N; i++) {
-      const ds = [];
-      for (let j = 0; j < N; j++) if (j !== i) ds.push([dirs[i].distanceToSquared(dirs[j]), j]);
-      ds.sort((a, b) => a[0] - b[0]);
-      for (let n = 0; n < K; n++) {
-        const j = ds[n][1], key = i < j ? i + '_' + j : j + '_' + i;
-        if (!seen.has(key)) { seen.add(key); edges.push([i, j]); }
-      }
-    }
+  }
+  const glyphs = [];
+  for (let i = 0; i < 40; i++) {
+    const v = [Math.random()*2-1, Math.random()*2-1, Math.random()*2-1], l = Math.hypot(...v);
+    glyphs.push({ dir: v.map(x => x / l), rad: R * (1.08 + Math.random()*.95), one: Math.random() > .5,
+      phase: Math.random()*6.28, spd: .4 + Math.random()*.8, flip: 2 + Math.random()*4, flipT: Math.random()*4,
+      op: .15 + Math.random()*.2, size: 10 + Math.random()*6 });
+  }
 
-    // points
-    const pPos = new Float32Array(N * 3);
-    const pGeo = new THREE.BufferGeometry();
-    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-    const dotTex = (() => {
-      const c = document.createElement('canvas'); c.width = c.height = 64;
-      const x = c.getContext('2d');
-      const g = x.createRadialGradient(32, 32, 0, 32, 32, 32);
-      g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.35, 'rgba(150,185,255,0.9)'); g.addColorStop(1, 'rgba(13,82,181,0)');
-      x.fillStyle = g; x.fillRect(0, 0, 64, 64);
-      const t = new THREE.Texture(c); t.needsUpdate = true; return t;
-    })();
-    const pMat = new THREE.PointsMaterial({ size: 0.052, map: dotTex, transparent: true, opacity: 0, depthWrite: false, blending: THREE.NormalBlending, color: ACCENT });
-    const points = new THREE.Points(pGeo, pMat);
-    group.add(points);
+  let w = 0, h = 0, dpr = 1;
+  const resize = () => {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    w = hero.clientWidth; h = hero.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  addEventListener('resize', resize);
 
-    // connection lines
-    const lPos = new Float32Array(edges.length * 6);
-    const lGeo = new THREE.BufferGeometry();
-    lGeo.setAttribute('position', new THREE.BufferAttribute(lPos, 3));
-    const lMat = new THREE.LineBasicMaterial({ color: ACCENT, transparent: true, opacity: 0, depthWrite: false, blending: THREE.NormalBlending });
-    const lines = new THREE.LineSegments(lGeo, lMat);
-    group.add(lines);
+  const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+  addEventListener('mousemove', e => { mouse.tx = e.clientX / innerWidth - .5; mouse.ty = e.clientY / innerHeight - .5; });
 
-    // binary glyph sprites
-    const glyph = (ch) => {
-      const c = document.createElement('canvas'); c.width = c.height = 64;
-      const x = c.getContext('2d');
-      x.fillStyle = '#ffffff'; x.font = 'bold 46px "Space Mono", monospace';
-      x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(ch, 32, 34);
-      const t = new THREE.Texture(c); t.needsUpdate = true; return t;
+  const proj = new Float32Array(N * 3);
+  let t = 0, ry = 0, amp = 0, ampT = 0, raf = 0;
+  const t0 = performance.now();
+
+  const draw = () => {
+    t += .01;
+    // amplitude eases in over 2.6s once the headline starts revealing
+    ampT = reduced ? 1 : Math.min(1, (performance.now() - t0 - 300) / 2600);
+    amp = ampT <= 0 ? 0 : .34 * (1 - Math.pow(1 - ampT, 3));
+    const vis = Math.min(1, amp / .3);
+    mouse.x += (mouse.tx - mouse.x) * .05; mouse.y += (mouse.ty - mouse.y) * .05;
+    ry += .0022 + mouse.x * .01;
+    const rx = mouse.y * .4;
+    const cy_ = Math.cos(ry), sy_ = Math.sin(ry), cx_ = Math.cos(rx), sx_ = Math.sin(rx);
+    const f = (h / 2) / Math.tan(FOV * Math.PI / 360);
+    const cx = w / 2, cy = h / 2;
+    const project = (x, y, z, out, o) => {
+      // rotate Y then X (matches group.rotation order), then perspective
+      const x1 = x * cy_ + z * sy_, z1 = -x * sy_ + z * cy_;
+      const y2 = y * cx_ - z1 * sx_, z2 = y * sx_ + z1 * cx_;
+      const s = f / (CAM - z2);
+      out[o] = cx + x1 * s; out[o + 1] = cy - y2 * s; out[o + 2] = s;
     };
-    const texZero = glyph('0'), texOne = glyph('1');
-    const GLYPH_TINT = new THREE.Color('#a9bedd'); // light blue-gray — keep digits soft, never dark
-    const sprites = [];
-    for (let i = 0; i < 40; i++) {
-      const isOne = Math.random() > 0.5;
-      const m = new THREE.SpriteMaterial({ map: isOne ? texOne : texZero, transparent: true, opacity: 0, depthWrite: false, blending: THREE.NormalBlending, color: GLYPH_TINT });
-      const s = new THREE.Sprite(m);
-      const dir = new THREE.Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1).normalize();
-      const sc = 0.05 + Math.random() * 0.03; s.scale.set(sc, sc, sc); // caps rendered glyphs around ~26px max
-      s.userData = { dir, rad: R * (1.08 + Math.random() * 0.95), isOne, phase: Math.random() * 6.28, spd: 0.4 + Math.random() * 0.8, flip: 2 + Math.random() * 4, flipT: Math.random() * 4, baseOp: 0.15 + Math.random() * 0.2 };
-      group.add(s); sprites.push(s);
+    for (let i = 0; i < N; i++) {
+      const d = dirs[i];
+      const wob = Math.sin(d[0]*2.2 + t) + Math.sin(d[1]*2.6 - t*.8) + Math.sin(d[2]*2.0 + t*.6);
+      const r = R * (1 + amp * wob * .14);
+      project(d[0]*r, d[1]*r, d[2]*r, proj, i*3);
+    }
+    ctx.clearRect(0, 0, w, h);
+    if (vis <= 0) { raf = requestAnimationFrame(draw); return; }
+
+    ctx.strokeStyle = 'rgba(13,82,181,' + (.22 * vis) + ')';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (const [a, b] of edges) { ctx.moveTo(proj[a*3], proj[a*3+1]); ctx.lineTo(proj[b*3], proj[b*3+1]); }
+    ctx.stroke();
+
+    for (let i = 0; i < N; i++) {
+      const s = proj[i*3+2], rad = .019 * s;
+      const g = ctx.createRadialGradient(proj[i*3], proj[i*3+1], 0, proj[i*3], proj[i*3+1], rad);
+      g.addColorStop(0, 'rgba(255,255,255,' + vis + ')');
+      g.addColorStop(.35, 'rgba(150,185,255,' + (.9 * vis) + ')');
+      g.addColorStop(1, 'rgba(13,82,181,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(proj[i*3], proj[i*3+1], rad, 0, 6.2832); ctx.fill();
     }
 
-    const resize = () => { const w = hero.clientWidth, h = hero.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
-    resize();
-    this.onWin('resize', resize);
-
-    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
-    this.onWin('mousemove', e => { mouse.tx = (e.clientX / window.innerWidth - 0.5); mouse.ty = (e.clientY / window.innerHeight - 0.5); });
-
-    let t = 0;
-    const loop = () => {
-      t += 0.01;
-      const amp = this._heroAnim.amp;
-      const vis = Math.min(1, amp / 0.3);
-      for (let i = 0; i < N; i++) {
-        const d = dirs[i];
-        const wob = Math.sin(d.x * 2.2 + t) + Math.sin(d.y * 2.6 - t * 0.8) + Math.sin(d.z * 2.0 + t * 0.6);
-        const r = R * (1 + amp * wob * 0.14);
-        pPos[i * 3] = d.x * r; pPos[i * 3 + 1] = d.y * r; pPos[i * 3 + 2] = d.z * r;
-      }
-      pGeo.attributes.position.needsUpdate = true;
-      for (let e = 0; e < edges.length; e++) {
-        const a = edges[e][0], b = edges[e][1], o = e * 6;
-        lPos[o] = pPos[a * 3]; lPos[o + 1] = pPos[a * 3 + 1]; lPos[o + 2] = pPos[a * 3 + 2];
-        lPos[o + 3] = pPos[b * 3]; lPos[o + 4] = pPos[b * 3 + 1]; lPos[o + 5] = pPos[b * 3 + 2];
-      }
-      lGeo.attributes.position.needsUpdate = true;
-      pMat.opacity = vis; lMat.opacity = 0.22 * vis;
-      for (const s of sprites) {
-        const u = s.userData;
-        u.phase += 0.01 * u.spd;
-        const rad = u.rad + Math.sin(u.phase) * 0.14;
-        s.position.set(u.dir.x * rad, u.dir.y * rad, u.dir.z * rad);
-        u.flipT += 0.016;
-        if (u.flipT > u.flip) { u.flipT = 0; u.isOne = !u.isOne; s.material.map = u.isOne ? texOne : texZero; s.material.needsUpdate = true; }
-        s.material.opacity += (u.baseOp * vis - s.material.opacity) * 0.06;
-      }
-      mouse.x += (mouse.tx - mouse.x) * 0.05; mouse.y += (mouse.ty - mouse.y) * 0.05;
-      group.rotation.y += 0.0022 + mouse.x * 0.01;
-      group.rotation.x = mouse.y * 0.4;
-      this._raf = requestAnimationFrame(loop);
-      renderer.render(scene, camera);
-    };
-    loop();
-  }
-
-  initReveals() {
-    this.$all('[data-split]').forEach(el => this.splitWords(el));
-    this.$all('[data-split]').forEach(el => {
-      const words = el.querySelectorAll('[data-word]');
-      gsap.set(words, { yPercent: 120, opacity: 0 });
-      this.trackTrigger(gsap.to(words, { yPercent: 0, opacity: 1, duration: 1.0, ease: 'expo.out', stagger: 0.03, scrollTrigger: { trigger: el, start: 'top 88%' } }));
-    });
-    this.$all('[data-reveal]').forEach(el => {
-      this.trackTrigger(gsap.from(el, { y: 48, opacity: 0, duration: 1.1, ease: 'power3.out', delay: parseFloat(el.getAttribute('data-delay') || 0), scrollTrigger: { trigger: el, start: 'top 90%' } }));
-    });
-  }
-
-  initTilt() {
-    this.$all('[data-tilt]').forEach(card => {
-      card.style.transition = 'transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease';
-      card.style.willChange = 'transform';
-      card.addEventListener('mousemove', ev => {
-        const r = card.getBoundingClientRect();
-        const px = (ev.clientX - r.left) / r.width - 0.5;
-        const py = (ev.clientY - r.top) / r.height - 0.5;
-        card.style.transition = 'transform .1s linear, box-shadow .4s ease';
-        card.style.transform = 'perspective(820px) rotateX(' + (-py * 6) + 'deg) rotateY(' + (px * 6) + 'deg) translateY(-6px)';
-        card.style.boxShadow = '0 28px 60px -28px rgba(13,82,181,0.22)';
-        card.style.borderColor = '#c9cad2';
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transition = 'transform .55s cubic-bezier(.2,.7,.2,1), box-shadow .55s ease';
-        card.style.transform = 'perspective(820px) rotateX(0deg) rotateY(0deg) translateY(0)';
-        card.style.boxShadow = 'none';
-        card.style.borderColor = '#e2e2e8';
-      });
-    });
-  }
-
-  initGallery() {
-    const wrap = this.q('[data-gallery]');
-    const track = this.q('[data-track]');
-    if (!wrap || !track) return;
-    const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-    this.trackTrigger(gsap.to(track, {
-      x: () => -dist(), ease: 'none',
-      scrollTrigger: { trigger: wrap, start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true }
-    }));
-  }
-
-  initCaps() {
-    const preview = this.q('[data-cap-preview]');
-    const label = this.q('[data-cap-preview-label]');
-    if (preview) {
-      gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.85 });
-      const xp = gsap.quickTo(preview, 'x', { duration: 0.55, ease: 'power3' });
-      const yp = gsap.quickTo(preview, 'y', { duration: 0.55, ease: 'power3' });
-      this.onWin('mousemove', e => { xp(e.clientX); yp(e.clientY); });
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    const gp = [0, 0, 0];
+    for (const g of glyphs) {
+      g.phase += .01 * g.spd;
+      g.flipT += .016;
+      if (g.flipT > g.flip) { g.flipT = 0; g.one = !g.one; }
+      const rad = g.rad + Math.sin(g.phase) * .14;
+      project(g.dir[0]*rad, g.dir[1]*rad, g.dir[2]*rad, gp, 0);
+      ctx.fillStyle = 'rgba(169,190,221,' + (g.op * vis) + ')';
+      ctx.font = 'bold ' + Math.round(g.size * gp[2] / f * 3.2) + 'px "Space Mono", monospace';
+      ctx.fillText(g.one ? '1' : '0', gp[0], gp[1]);
     }
-    this.$all('[data-cap]').forEach(cap => {
-      const title = cap.querySelector('span:nth-child(2)');
-      const arrow = cap.querySelector('[data-arrow]');
-      if (arrow) arrow.style.transition = 'transform .35s cubic-bezier(.2,.8,.2,1)';
-      cap.addEventListener('mouseenter', () => {
-        if (preview && label) { label.textContent = cap.getAttribute('data-label') || ''; gsap.to(preview, { opacity: 1, scale: 1, duration: 0.4, ease: 'power3.out' }); }
-        cap.style.paddingLeft = '22px';
-        if (title) gsap.to(title, { color: '#0d52b5', duration: 0.3 });
-        if (arrow) arrow.style.transform = 'translateX(10px)';
-      });
-      cap.addEventListener('mouseleave', () => {
-        if (preview) gsap.to(preview, { opacity: 0, scale: 0.85, duration: 0.3 });
-        cap.style.paddingLeft = '0px';
-        if (title) gsap.to(title, { color: '#1d1d22', duration: 0.3 });
-        if (arrow) arrow.style.transform = 'translateX(0)';
-      });
-    });
-  }
+    raf = requestAnimationFrame(draw);
+  };
 
-  initMagnetic() {
-    this.$all('[data-magnetic]').forEach(el => {
-      const strength = parseFloat(el.getAttribute('data-magnetic')) || 0.35;
-      el.addEventListener('mousemove', e => {
-        const r = el.getBoundingClientRect();
-        const x = e.clientX - (r.left + r.width / 2);
-        const y = e.clientY - (r.top + r.height / 2);
-        gsap.to(el, { x: x * strength, y: y * strength, duration: 0.5, ease: 'power3.out' });
-      });
-      el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1,0.4)' }));
-    });
+  const start = () => { if (!raf) raf = requestAnimationFrame(draw); };
+  const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+  if (reduced) { draw(); stop(); }
+  else {
+    start();
+    document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
   }
-
-  initHeroParallax() {
-    this.trackTrigger(gsap.to('[data-webgl]', { scale: 1.15, yPercent: 12, ease: 'none', scrollTrigger: { trigger: '[data-hero]', start: 'top top', end: 'bottom top', scrub: true } }));
-    this.trackTrigger(gsap.to('[data-hero-content]', { yPercent: -16, opacity: 0, ease: 'none', scrollTrigger: { trigger: '[data-hero]', start: 'top top', end: 'bottom top', scrub: true } }));
-  }
-
-  renderVals() { return {}; }
-}
-new Component().componentDidMount();
+})();
 </script>
 </body>
 </html>
