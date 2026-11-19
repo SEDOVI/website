@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SEDOVI · Apps en webapps, gebouwd tot ze live staan</title>
-<meta name="description" content="SEDOVI bouwt apps voor iPhone en Android, webapps en SaaS voor bedrijven en startups. Vaste prijs, elke week een werkende versie, en je werkt direct met de ontwikkelaar.">
+<meta name="description" content="SEDOVI bouwt apps voor iPhone en Android, webapps en SaaS voor bedrijven en startups. Vaste prijs, en je werkt direct met de ontwikkelaar.">
 <meta name="theme-color" content="#0d52b5">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SEDOVI">
 <meta property="og:locale" content="nl_NL">
 <meta property="og:title" content="SEDOVI · Apps en webapps, gebouwd tot ze live staan">
-<meta property="og:description" content="Apps voor iPhone en Android, webapps en SaaS. Vaste prijs, elke week een werkende versie, direct contact met de ontwikkelaar.">
+<meta property="og:description" content="Apps voor iPhone en Android, webapps en SaaS. Vaste prijs en direct contact met de ontwikkelaar.">
 <meta property="og:url" content="https://sedovi.nl/">
 <meta property="og:image" content="https://sedovi.nl/og.png">
 <meta property="og:image:width" content="1200">
@@ -51,7 +51,7 @@
         <span data-split>Apps en webapps,</span>
         <span data-split class="accent">gebouwd tot ze live staan.</span>
       </h1>
-      <p class="sub">SEDOVI bouwt software voor bedrijven en startups: apps voor iPhone en Android, webapps en SaaS. Je werkt direct met de ontwikkelaar, voor een vaste prijs, en elke week zie je een versie die werkt.</p>
+      <p class="sub">SEDOVI bouwt software voor bedrijven en startups: apps voor iPhone en Android, webapps en SaaS. Je werkt direct met de ontwikkelaar en voor een vaste prijs.</p>
       <div class="actions">
         <a href="https://calendar.app.google/vygYryYrwR2n76nS7" class="btn" target="_blank" rel="noopener">Plan een kennismaking <span aria-hidden="true">↗</span></a>
         <a href="#werk" class="btn ghost">Bekijk het werk</a>
@@ -221,6 +221,42 @@
     <nav aria-label="Taal"><a href="/" aria-current="page">Nederlands</a><a href="/en/" hreflang="en" lang="en">English</a></nav>
   </div>
 </footer>
+
+<dialog class="sheet" id="contact-form" aria-labelledby="cf-title">
+  <form class="cf" action="https://api.web3forms.com/submit" method="POST" data-sending="Bezig met versturen…">
+    <div class="cf-head">
+      <h2 id="cf-title">Neem contact op</h2>
+      <button type="button" class="cf-close" data-close aria-label="Sluiten"><span aria-hidden="true">✕</span></button>
+    </div>
+    <p class="cf-sub">Je bericht komt direct bij de ontwikkelaar binnen. Liever een gesprek? <a href="https://calendar.app.google/vygYryYrwR2n76nS7" target="_blank" rel="noopener">Plan een kennismaking</a>.</p>
+    <input type="hidden" name="access_key" value="WEB3FORMS_KEY">
+    <input type="hidden" name="subject" value="Nieuw bericht via sedovi.nl">
+    <input type="hidden" name="from_name" value="sedovi.nl">
+    <input type="checkbox" name="botcheck" class="bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label>Naam<input name="name" autocomplete="name" required></label>
+    <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
+    <label>Bedrijf <span>optioneel</span><input name="company" autocomplete="organization"></label>
+    <label>Soort project<select name="project">
+          <option>Weet ik nog niet</option>
+          <option>Prototype</option>
+          <option>Webapp of SaaS</option>
+          <option>App voor iPhone en Android</option>
+          <option>Onderhoud en doorbouwen</option>
+        </select></label>
+    <label>Wat wil je bouwen?<textarea name="message" rows="5" required></textarea></label>
+    <p class="cf-privacy">Je gegevens gaan via Web3Forms naar SEDOVI en worden alleen gebruikt om je te antwoorden.</p>
+    <p class="cf-error" role="alert" hidden>Versturen lukte niet. Mail je bericht naar <a href="mailto:developer@sedovi.nl">developer@sedovi.nl</a>.</p>
+    <div class="cf-actions">
+      <button type="submit" class="btn">Verstuur</button>
+      <p class="cf-status" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+  <div class="cf-done" hidden>
+    <h2 tabindex="-1">Bedankt.</h2>
+    <p>Je bericht is verstuurd naar SEDOVI.</p>
+    <button type="button" class="btn" data-close>Sluiten</button>
+  </div>
+</dialog>
 
 <script src="/assets/site.js" defer></script>
 </body>
