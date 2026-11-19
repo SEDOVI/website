@@ -30,6 +30,40 @@
     addEventListener('load', sync);
   }
 
+  // contact form in a dialog; without JS the header link stays a mailto
+  const sheet = document.getElementById('contact-form');
+  const opener = document.querySelector('.nav .cta');
+  if (sheet && opener && sheet.showModal) {
+    const form = sheet.querySelector('form'), done = sheet.querySelector('.cf-done');
+    const status = form.querySelector('.cf-status'), error = form.querySelector('.cf-error');
+    const submit = form.querySelector('[type=submit]');
+    opener.addEventListener('click', e => {
+      e.preventDefault();
+      form.hidden = false; done.hidden = true; error.hidden = true; status.textContent = '';
+      sheet.showModal();
+      form.querySelector('[name=name]').focus();
+    });
+    sheet.addEventListener('click', e => {
+      if (e.target === sheet || e.target.closest('[data-close]')) sheet.close();
+    });
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      submit.disabled = true; error.hidden = true; status.textContent = form.dataset.sending;
+      try {
+        const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.success) throw new Error(json.message || res.status);
+        form.reset(); form.hidden = true; done.hidden = false;
+        done.querySelector('h2').focus();
+      } catch (err) {
+        error.hidden = false;
+        error.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      } finally {
+        submit.disabled = false; status.textContent = '';
+      }
+    });
+  }
+
   // header border once the page scrolls
   const top = document.querySelector('.top');
   const onScroll = () => top.classList.toggle('scrolled', scrollY > 8);
