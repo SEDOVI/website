@@ -1,5 +1,5 @@
 <?php
-// Contact form endpoint for sedovi.nl. Runs on Strato webhosting (form.sedovi.nl).
+// Contact form endpoint for sedovi.nl. Runs on Strato webhosting (sedovi.net).
 // Sends each message through the Strato mailbox over authenticated SMTP, so it is DKIM-signed.
 declare(strict_types=1);
 ini_set('display_errors', '0'); // never print warnings or server paths into the JSON
