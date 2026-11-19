@@ -129,11 +129,6 @@ h3{margin:0;font-family:var(--display);font-weight:800;font-size:var(--step-2);l
 .contact-panel p{color:rgba(255,255,255,.82);max-width:48ch;margin:20px 0 0;}
 .contact-panel .btn{background:var(--surface);color:var(--blue);}
 .contact-panel .btn:hover{box-shadow:0 12px 28px -12px rgba(0,0,0,.4);}
-.email{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px;}
-.email a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4);}
-.email a:hover{border-color:#fff;}
-.copy{font:inherit;font-size:12px;min-height:32px;padding:5px 12px;border:1px solid rgba(255,255,255,.4);border-radius:var(--pill);background:transparent;color:inherit;cursor:pointer;}
-.copy:hover{border-color:#fff;}
 
 footer{margin-top:var(--section);border-top:1px solid var(--line);}
 footer .wrap{padding-top:30px;padding-bottom:30px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;}
