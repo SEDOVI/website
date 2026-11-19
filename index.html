@@ -223,15 +223,13 @@
 </footer>
 
 <dialog class="sheet" id="contact-form" aria-labelledby="cf-title">
-  <form class="cf" action="https://api.web3forms.com/submit" method="POST" data-sending="Bezig met versturen…">
+  <form class="cf" action="https://form.sedovi.nl/contact.php" method="POST" data-sending="Bezig met versturen…">
     <div class="cf-head">
       <h2 id="cf-title">Neem contact op</h2>
       <button type="button" class="cf-close" data-close aria-label="Sluiten"><span aria-hidden="true">✕</span></button>
     </div>
     <p class="cf-sub">Je bericht komt direct bij de ontwikkelaar binnen. Liever een gesprek? <a href="https://calendar.app.google/vygYryYrwR2n76nS7" target="_blank" rel="noopener">Plan een kennismaking</a>.</p>
-    <input type="hidden" name="access_key" value="WEB3FORMS_KEY">
-    <input type="hidden" name="subject" value="Nieuw bericht via sedovi.nl">
-    <input type="hidden" name="from_name" value="sedovi.nl">
+    <input type="hidden" name="lang" value="nl">
     <input type="checkbox" name="botcheck" class="bot" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label>Naam<input name="name" autocomplete="name" required></label>
     <label>E-mail<input type="email" name="email" autocomplete="email" required></label>
@@ -244,7 +242,7 @@
           <option>Onderhoud en doorbouwen</option>
         </select></label>
     <label>Wat wil je bouwen?<textarea name="message" rows="5" required></textarea></label>
-    <p class="cf-privacy">Je gegevens gaan via Web3Forms naar SEDOVI en worden alleen gebruikt om je te antwoorden.</p>
+    <p class="cf-privacy">Je gegevens gaan rechtstreeks naar SEDOVI en worden alleen gebruikt om je te antwoorden.</p>
     <p class="cf-error" role="alert" hidden>Versturen lukte niet. Mail je bericht naar <a href="mailto:developer@sedovi.nl">developer@sedovi.nl</a>.</p>
     <div class="cf-actions">
       <button type="submit" class="btn">Verstuur</button>

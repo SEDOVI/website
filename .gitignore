@@ -8,3 +8,7 @@ ui-debug.log*
 
 # macOS
 .DS_Store
+
+# Contact form server: secrets and runtime data stay on Strato
+_server/private/config.php
+_server/private/ratelimit/
