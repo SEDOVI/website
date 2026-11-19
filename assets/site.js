@@ -21,6 +21,25 @@
     });
   });
 
+  // project rail: arrows appear only when the projects overflow
+  const rail = document.querySelector('.projects');
+  const nav = document.querySelector('.rail-nav');
+  if (rail && nav) {
+    const prev = nav.querySelector('.prev'), next = nav.querySelector('.next');
+    const step = () => (rail.querySelector('.project')?.offsetWidth || rail.clientWidth) + 24;
+    const sync = () => {
+      const max = rail.scrollWidth - rail.clientWidth;
+      nav.hidden = max <= 2;
+      prev.disabled = rail.scrollLeft <= 2;
+      next.disabled = rail.scrollLeft >= max - 2;
+    };
+    prev.addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => rail.scrollBy({ left: step(), behavior: 'smooth' }));
+    rail.addEventListener('scroll', sync, { passive: true });
+    new ResizeObserver(sync).observe(rail);
+    addEventListener('load', sync);
+  }
+
   // header border once the page scrolls
   const top = document.querySelector('.top');
   const onScroll = () => top.classList.toggle('scrolled', scrollY > 8);

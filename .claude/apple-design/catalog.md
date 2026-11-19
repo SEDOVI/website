@@ -20,10 +20,12 @@ All tokens are on `:root` in `assets/site.css`: `--bg`, `--surface`, `--ink`, `-
 - Markup: `.faq > details > summary + p`. Rows are at least 60px tall, separated by `--line`, on a `--surface` card.
 
 ### Project card
-- Custom. A white card with text on the left and a browser frame plus phone frame on the right. Stacks on screens under 880px. The demo note keeps clear of the phone through `--phone-w` and `--phone-r`.
+- Custom. A white card with a 16:10 media area on top (browser frame, phone frame overlapping on the right) and text below. Demo-data notes go in the card body as `p.note`.
+- Cards sit in a horizontal row (`.projects`, closest to the apple.com "Get to know" shelves), so the page doesn't grow taller with each new project. Two cards fit side by side from 1000px. Under that each card is min(86vw, 560px) wide. The row bleeds to the viewport edge through `--inset` but snaps cards to the page gutter.
+- `.rail-head` holds the heading and the round prev/next buttons. `site.js` hides the buttons when everything fits and disables them at each end. To add a project, add one more `article.project`; no other change is needed (update the "Twee producten / Two products" lede).
 
 ### Service card with price
-- Custom, closest to apple.com "compare models" cards. Mono "from" label, display-font price, check list.
+- Custom, closest to apple.com "compare models" cards. Mono "from" label, display-font price, one-line description. No feature list until the owner approves package contents.
 
 ### Numbered steps
 - Custom. `ol.steps` with mono counters, 4 columns, 2 on tablet, 1 on phone.

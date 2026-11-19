@@ -65,11 +65,19 @@
 
   <section class="block" id="work" aria-labelledby="work-title">
     <div class="wrap">
-      <p class="kicker">// work</p>
-      <h2 id="work-title">Work that is live.</h2>
-      <p class="lede">Two products SEDOVI designed, built and runs in production. You can use both today.</p>
+      <div class="rail-head">
+        <div>
+          <p class="kicker">// work</p>
+          <h2 id="work-title">Work that is live.</h2>
+          <p class="lede">Two products SEDOVI designed, built and runs in production. You can use both today.</p>
+        </div>
+        <div class="rail-nav" hidden>
+          <button type="button" class="prev" aria-label="Previous project" aria-controls="projects"><span aria-hidden="true">←</span></button>
+          <button type="button" class="next" aria-label="Next project" aria-controls="projects"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
 
-      <div class="projects">
+      <div class="projects" id="projects" role="region" aria-label="Projects" tabindex="0">
         <article class="project">
           <div class="body">
             <p class="tag">Sports software · iOS, Android and web</p>
@@ -80,6 +88,7 @@
               <li>Payments and payouts per school through Mollie</li>
               <li>App in Dutch and English, website in German too</li>
             </ul>
+            <p class="note">App shown with demo sample data</p>
             <div class="links">
               <a href="https://trainyou.nl/" rel="noopener">trainyou.nl <span aria-hidden="true">↗</span></a>
               <a href="https://apps.apple.com/nl/app/trainyou/id6775515271" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
@@ -94,7 +103,6 @@
             <div class="phone">
               <img src="/assets/work/trainyou-app.webp" width="600" height="1298" loading="lazy" alt="The TrainYou app on a phone: a tennis school's week view with lessons per court and open spots.">
             </div>
-            <p class="note">App shown with demo sample data</p>
           </div>
         </article>
 

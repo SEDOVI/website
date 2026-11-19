@@ -65,11 +65,19 @@
 
   <section class="block" id="werk" aria-labelledby="werk-titel">
     <div class="wrap">
-      <p class="kicker">// werk</p>
-      <h2 id="werk-titel">Werk dat live staat.</h2>
-      <p class="lede">Twee producten die SEDOVI heeft ontworpen, gebouwd en in productie draait. Je kunt ze vandaag gebruiken.</p>
+      <div class="rail-head">
+        <div>
+          <p class="kicker">// werk</p>
+          <h2 id="werk-titel">Werk dat live staat.</h2>
+          <p class="lede">Twee producten die SEDOVI heeft ontworpen, gebouwd en in productie draait. Je kunt ze vandaag gebruiken.</p>
+        </div>
+        <div class="rail-nav" hidden>
+          <button type="button" class="prev" aria-label="Vorig project" aria-controls="projecten"><span aria-hidden="true">←</span></button>
+          <button type="button" class="next" aria-label="Volgend project" aria-controls="projecten"><span aria-hidden="true">→</span></button>
+        </div>
+      </div>
 
-      <div class="projects">
+      <div class="projects" id="projecten" role="region" aria-label="Projecten" tabindex="0">
         <article class="project">
           <div class="body">
             <p class="tag">Sportsoftware · iOS, Android en web</p>
@@ -80,6 +88,7 @@
               <li>Betalingen en uitbetalingen per school via Mollie</li>
               <li>App in het Nederlands en Engels, website ook in het Duits</li>
             </ul>
+            <p class="note">App met voorbeelddata uit de demo</p>
             <div class="links">
               <a href="https://trainyou.nl/" rel="noopener">trainyou.nl <span aria-hidden="true">↗</span></a>
               <a href="https://apps.apple.com/nl/app/trainyou/id6775515271" rel="noopener">App Store <span aria-hidden="true">↗</span></a>
@@ -94,7 +103,6 @@
             <div class="phone">
               <img src="/assets/work/trainyou-app.webp" width="600" height="1298" loading="lazy" alt="TrainYou-app op de telefoon: weekoverzicht van een tennisschool met lessen per baan en vrije plekken.">
             </div>
-            <p class="note">App met voorbeelddata uit de demo</p>
           </div>
         </article>
 
