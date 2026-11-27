@@ -8,6 +8,7 @@ How sedovi.nl builds each pattern. Static HTML, one shared stylesheet. Read this
 | --- | --- | --- |
 | Home, Dutch | `index.html` | apple.com product pages: big headline, sections that each make one point |
 | Home, English | `en/index.html` | same markup as the Dutch page, strings translated |
+| Legal pages | `privacy.html`, `terms.html`, `data-deletion.html` and the same in `en/` | plain text page: kicker, h1, lede, date, then `h2` sections in `main.legal`. GitHub Pages serves them without `.html` |
 
 ## Tokens
 
